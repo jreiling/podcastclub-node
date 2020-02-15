@@ -30,13 +30,27 @@ imessage.listen().on('message', (msg) => {
       imessage.getGroupMembers(msg.group).then(groupObject => {
           console.log(groupObject);
 
-          msg.groupObject = groupObject;
-
           // SEND /handle-group-update
+          msg.groupObject = groupObject;
+          axios.post(process.env.REMOTE_SERVER + '/api/handle-group-update', msg)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
       })
     } else {
 
       // SEND TO /handle-message
+      axios.post(process.env.REMOTE_SERVER + '/api/handle-message', msg)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     }
 
