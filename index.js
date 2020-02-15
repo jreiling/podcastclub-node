@@ -3,7 +3,7 @@ var Pusher = require('pusher-client');
 require('custom-env').env()
 
 
-var socket = new Pusher(process.env.PUSHER_APP,{
+var socket = new Pusher(process.env.PUSHER_KEY,{
   secret:process.env.PUSHER_SECRET,
   cluster:process.env.PUSHER_CLUSTER
 
